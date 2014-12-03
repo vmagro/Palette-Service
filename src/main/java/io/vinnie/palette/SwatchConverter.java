@@ -2,7 +2,7 @@ package io.vinnie.palette;
 
 import android.support.v7.graphics.Palette;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
@@ -15,7 +15,14 @@ public class SwatchConverter implements JsonSerializer<Palette.Swatch> {
 
     @Override
     public JsonElement serialize(Palette.Swatch swatch, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonObject json = new JsonObject();
+        json.addProperty("red", swatch.getRed());
+        json.addProperty("green", swatch.getGreen());
+        json.addProperty("blue", swatch.getBlue());
+
         //substring at 2 to cut off the transparency which is always ff
-        return new JsonPrimitive(Integer.toHexString(swatch.getRgb()).substring(2));
+        json.addProperty("rgb", Integer.toHexString(swatch.getRgb()).substring(2));
+
+        return json;
     }
 }

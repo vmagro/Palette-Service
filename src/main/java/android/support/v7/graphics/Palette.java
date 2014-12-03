@@ -472,6 +472,18 @@ public final class Palette {
             mPopulation = population;
         }
 
+        public int getRed() {
+            return mRed;
+        }
+
+        public int getGreen() {
+            return mGreen;
+        }
+
+        public int getBlue() {
+            return mBlue;
+        }
+
         /**
          * @return this swatch's RGB color value
          */

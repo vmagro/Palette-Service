@@ -1,33 +1,42 @@
-# java-getting-started
+This project provides access to Android's [Palette library](https://developer.android.com/tools/support-library/features.html#v7-palette) as a service.
 
-A barebones Java app, which can easily be deployed to Heroku.  
+Usage
+=====
 
-This application support the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
+Request
+-------
 
-## Running Locally
+Perform an HTTP GET request to ```http://palette.vinnie.io/palette?url=<photo url>```
 
-Make sure you have Java and Maven installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+Response
+--------
 
-```sh
-$ git clone https://github.com/heroku/java-getting-started.git
-$ cd java-getting-started
-$ mvn install
-$ foreman start web
-```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+    {
+        "lightVibrant": "<hex color code>",  
+        "lightMuted": "<hex color code>",  
+        "muted": "<hex color code>",  
+        "darkMuted": "<hex color code>",  
+        "darkVibrant": "<hex color code>",  
+        "vibrant": "<hex color code>"  
+    }
+    
+Note: not all of these swatches may be defined. If the library couldn't find an appropriate color, then it will simply not be present in the response.
 
-## Deploying to Heroku
 
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
+Example request
+----------------
 
-## Documentation
+![Landscape](https://c3.staticflickr.com/3/2658/4130990745_b3182f920a_b.jpg)
+Request URL: ```http://palette.vinnie.io/palette?url=https://c3.staticflickr.com/3/2658/4130990745_b3182f920a_b.jpg```
 
-For more information about using Java on Heroku, see these Dev Center articles:
+Response:
 
-- [Java on Heroku](https://devcenter.heroku.com/categories/java)
-
+    {
+        "lightVibrant": "b5c0e0",
+        "lightMuted": "94a3cf",
+        "muted": "6c8a9b",
+        "darkMuted": "282f40",
+        "darkVibrant": "694f0f",
+        "vibrant": "91530d"
+    }

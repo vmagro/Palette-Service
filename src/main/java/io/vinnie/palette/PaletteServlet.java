@@ -69,6 +69,7 @@ public class PaletteServlet extends HttpServlet {
         swatches.put("muted", palette.getMutedSwatch());
         swatches.put("vibrant", palette.getVibrantSwatch());
 
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(swatches));
     }
